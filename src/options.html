@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>RevEye - Reverse Image Lookup - options</title>
+
+<style type="text/css">
+body {
+	margin: 15px auto;
+	width: 450px;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+	text-align: center
+}
+h1 {
+	margin: 0;
+}
+h3 {
+	margin: 20px 0 5px 0;
+}
+p {
+	margin: 0 0 10px 0;
+}
+#save {
+	margin-top: 10px;
+}
+#status {
+	background-color: yellow;
+	margin: 5px 150px;
+}
+.options {
+	text-align: left;
+	padding-left: 80px;
+}
+#footer {
+	font-size: 80%;
+	margin-top: 50px;
+}
+</style>
+
+<script type="text/javascript">
+
+function save_options() {
+	var menutype_radio = document.getElementsByName("menutype");
+	for(var i = 0; i < menutype_radio.length; i++) {if(menutype_radio[i].checked){localStorage.menutype = menutype_radio[i].value;}}
+	
+	var service_dropdown = document.getElementsByName("service")[0];
+	var selIndex = service_dropdown.selectedIndex;
+	localStorage.service = service_dropdown[selIndex].value;
+
+	chrome.extension.sendRequest({action:"updateContextMenu"});
+	
+	var status = document.getElementById("status");
+	status.innerHTML = "Options saved.";
+	setTimeout(function() { status.innerHTML = ""; }, 800);
+}
+
+function restore_options() {
+	if (!localStorage.menutype){localStorage.menutype = "submenu";}
+	var menutype = localStorage.menutype;
+	document.getElementById(menutype).checked = true;
+	
+	document.getElementById("submenu_default").style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
+
+	if (!localStorage.service){localStorage.service = "tineye";}
+	var service = localStorage.service;
+	document.getElementById(service).selected = true;
+}
+
+function toggle_default_visibility() {
+	document.getElementById('submenu_default').style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
+}
+
+</script>
+</head>
+
+<body onload="restore_options()">
+<div id="header">
+<img src="i/reveye128.png">
+<h1>RevEye</h1>
+<p id="slogan">Reverse Image Lookup</p>
+</div>
+
+<h3>Context menu options:</h3>
+<div class="options">
+<input type="radio" id="submenu" name="menutype" value="submenu" onchange="toggle_default_visibility()"><label for="submenu" title="Choose this option if you want to select a search engine on every lookup.">Display all search engines in the menu.</label><br/>
+<input type="radio" id="singleoption" name="menutype" value="singleoption" onchange="toggle_default_visibility()"><label for="singleoption" title="Choose this option if you want to use the same search engine for every lookup.">Use one default option:</label> <span id="submenu_default" name="submenu_default"><select name="service">
+<option id="all" value="all">all engines</option>
+<option id="tineye" value="tineye">TinEye</option>
+<option id="cydral" value="cydral">Cydral</option>
+<option id="gazopa" value="gazopa">GaZoPa</option>
+</select>
+</span>
+</div>
+
+
+<div id="save">
+<div id="status"></div>
+<button onclick="save_options()">Save</button>
+</div>
+
+<p id="footer">RevEye v1.2. Copyright &copy; 2010-2011 <a href="http://squobble.blogspot.com" target="_blank">steven2358</a>.</p>
+
+</body>
+</html>
