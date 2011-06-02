@@ -10,6 +10,7 @@ The context menu can be configured to contain either a single button with the de
 
 Changes:
 -------------
+v1.3: Added Baidu image search engine.
 v1.2 (20110530): Name change to comply with Google's branding policies. Added Cydral search engine. Added option to choose between default engine or cascaded submenu.
 v1.1 (20110301): Added option to select between TinEye and GazoPa search engines.
 v1.0 (20100302): Added context menu.
