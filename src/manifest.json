@@ -1,7 +1,7 @@
 {
-  "name": "RevEye Reverse Image Lookup",
+  "name": "RevEye Reverse Image Search",
   "author": "Steven Van Vaerenbergh",
-  "description": "Perform a reverse image search. Choose between the image search engines TinEye, Cydral, GazoPa, Yandex, Baidu or all of them at once.",
+  "description": "Perform a search by image. Choose between the image search engines Google, TinEye, Cydral, Yandex, Baidu or all of them at once.",
   "version": "1.3",
   "background_page": "reveye.html",
   "options_page": "options.html",
@@ -10,7 +10,7 @@
     "tabs", "contextMenus", "http://*/*", "https://*/*"
   ],
   "browser_action": {
-    "default_title": "Reverse image lookup",
+    "default_title": "Reverse image search",
     "default_icon": "i/reveye48.png",
     "popup": "popup.html"
   },
