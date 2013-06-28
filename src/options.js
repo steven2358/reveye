@@ -29,11 +29,19 @@ function toggle_default_visibility() {
 	document.getElementById('submenu_default').style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
 }
 
+function close_window() {
+	window.close();
+}
+
 function initialize() {
 	restore_options();
 	document.getElementById("submenu").addEventListener("click",toggle_default_visibility);
 	document.getElementById("singleoption").addEventListener("click",toggle_default_visibility);
 	document.getElementById("save_button").addEventListener("click",save_options);
+	
+	if (document.getElementById("close_button")){
+		document.getElementById("close_button").addEventListener("click",close_window);
+	}
 }
 
 window.addEventListener("load", initialize);
