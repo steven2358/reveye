@@ -2,17 +2,25 @@
   "name": "RevEye Reverse Image Search",
   "author": "Steven Van Vaerenbergh",
   "description": "Perform a search by image. Choose between the image search engines Google, TinEye, Cydral, Yandex, Baidu or all of them at once.",
-  "version": "1.3",
-  "background_page": "reveye.html",
+  "version": "1.4",
+  "manifest_version": 2,
+  "background": {
+    "page": "reveye.html"
+  },
   "options_page": "options.html",
-  "icons": {"16": "i/reveye16.png", "48": "i/reveye48.png", "128": "i/reveye128.png" },
+  "icons": {
+    "16": "i/reveye16.png",
+    "19": "i/reveye19.png",
+	"48": "i/reveye48.png",
+	"128": "i/reveye128.png"
+  },
   "permissions": [
     "tabs", "contextMenus", "http://*/*", "https://*/*"
   ],
   "browser_action": {
-    "default_title": "Reverse image search",
+    "default_name": "Reverse image search",
     "default_icon": "i/reveye48.png",
-    "popup": "popup.html"
+    "default_popup": "popup.html"
   },
   "update_url":"http://clients2.google.com/service/update2/crx"
 }

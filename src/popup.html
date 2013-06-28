@@ -32,53 +32,18 @@ body {
 }
 </style>
 
-<script type="text/javascript">
-
-function save_options() {
-  var service_radio = document.getElementsByName("service");
-	var menutype_radio = document.getElementsByName("menutype");
-	for(var i = 0; i < menutype_radio.length; i++) {if(menutype_radio[i].checked){localStorage.menutype = menutype_radio[i].value;}}
-	
-	var service_dropdown = document.getElementsByName("service")[0];
-	var selIndex = service_dropdown.selectedIndex;
-	localStorage.service = service_dropdown[selIndex].value;
-	
-	chrome.extension.sendRequest({action:"updateContextMenu"});
-	
-	var status = document.getElementById("status");
-	status.innerHTML = "Options saved.";
-	setTimeout(function() { status.innerHTML = ""; }, 800);
-	
-}
-
-function restore_options() {
-	if (!localStorage.menutype){localStorage.menutype = "submenu";}
-	var menutype = localStorage.menutype;
-	document.getElementById(menutype).checked = true;
-	
-	document.getElementById("submenu_default").style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
-	
-	if (!localStorage.service){localStorage.service = "all";}
-	var service = localStorage.service;
-	document.getElementById(service).selected = true;
-}
-
-function toggle_default_visibility() {
-	document.getElementById('submenu_default').style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
-}
-
-</script>
+<script src="options.js"></script>
 </head>
 
 
 <img id="logo" src="i/reveye48.png">
 <h2>RevEye Options</h2>
 
-<body onload="restore_options()">
+<body>
 <p>Select context menu:</p>
 <p id="options">
-<input type="radio" id="submenu" name="menutype" value="submenu" onchange="toggle_default_visibility()"><label for="submenu" title="Choose this option if you want to select a search engine on every lookup.">Submenu with all options.</label><br/>
-<input type="radio" id="singleoption" name="menutype" value="singleoption" onchange="toggle_default_visibility()"><label for="singleoption" title="Choose this option if you want to use the same configuration for every lookup.">One default search option:</label><div id="submenu_default" name="submenu_default"><select name="service">
+<input type="radio" name="menutype" value="submenu" id="submenu"><label for="submenu" title="Choose this option if you want to select a search engine on every lookup.">Submenu with all options.</label><br/>
+<input type="radio" name="menutype" value="singleoption" id="singleoption"><label for="singleoption" title="Choose this option if you want to use the same configuration for every lookup.">One default search option:</label><div id="submenu_default"><select id="service">
 <option id="all" value="all">all engines</option>
 <option id="google" value="google">Google</option>
 <option id="tineye" value="tineye">TinEye</option>
@@ -92,7 +57,7 @@ function toggle_default_visibility() {
 
 <div id="save">
 <div id="status"></div>
-<button onclick="save_options()">Save</button> <a href="#" onclick="window.close();">cancel</a>
+<button id="save_button">Save</button> <a id="close_button" href="#">cancel</a>
 </div>
 
 <p id="instructions"><b>RevEye Instructions:</b><br/> Use context menu (right click) on any image in a web page.</p>
