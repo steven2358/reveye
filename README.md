@@ -17,9 +17,9 @@ Changes
 
 Author
 ------
-Copyright (c) 2011 Steven Van Vaerenbergh
+Copyright (c) 2011-2013 Steven Van Vaerenbergh
 
 License
 -------
 Released under the GPLv3 license.
-For full details see the LICENSE file included in this distribution.
+For full details see the LICENSE.txt file included in this distribution.
