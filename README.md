@@ -6,6 +6,13 @@ This extension allows to perform an inverse image search by right-clicking onto 
 The context menu can be configured to contain either a single button with the default search engine, or a cascaded menu with all included search engines.
 
 
+Install
+-------
+Stable version: Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/keaaclcjhehbbapnphnmpiklalfhelgf) and click "Add to Chrome".
+
+Development version: [Download the source from GitHub](https://github.com/steven2358/reveye/archive/master.zip) and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked).
+
+
 Changes
 -------
 - v1.4 (20130628): Performed security changes and updated manifest to v2. Removed Yandex, Baidu, Cydral.  
