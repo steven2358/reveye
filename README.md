@@ -15,6 +15,7 @@ Development version: [Download the source from GitHub](https://github.com/steven
 
 Changes
 -------
+- v1.4.3 (2015-05-19): Included Bing image match.
 - v1.4 (20130628): Performed security changes and updated manifest to v2. Removed Yandex, Baidu, Cydral.  
 - v1.3 (20110617): Included Google (brand new and kicking), Yandex and Baidu image search engines. Removed GazoPa as they discontinued their B2C service.  
 - v1.2 (20110530): Name change to comply with Google's branding policies. Added Cydral search engine. Added option to choose between default engine or cascaded submenu.  
