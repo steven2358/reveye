@@ -28,7 +28,7 @@ Changes
 
 Author
 ------
-Copyright (c) 2011-2013 Steven Van Vaerenbergh
+Copyright (c) 2011-2015 Steven Van Vaerenbergh
 
 
 License
