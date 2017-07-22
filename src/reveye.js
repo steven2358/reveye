@@ -4,7 +4,7 @@ var services = {
   "bing": ["Bing", "Bing image match", "https://www.bing.com/images/searchbyimage?cbir=ssbi&pageurl=http%3A%2F%2Fwww.squobble.com&imgurl=", "image"],
   "yandex": ["Yandex", "Yandex search", "https://www.yandex.com/images/search?rpt=imageview&img_url=", "image"],
   "tineye": ["TinEye", "TinEye search", "http://www.tineye.com/search/?url=", "image","page"],
-  "baidu": ["Baidu", "Baidu search", "http://shitu.baidu.com/n/pc_search?queryImageUrl=","image"],
+  "baidu": ["Baidu", "Baidu search", "http://image.baidu.com/n/pc_search?queryImageUrl=","image"],
 //  "cydral": ["Cydral", "Cydral search", "http://www.cydral.com/#url=", "image"],
 //  "gazopa": ["GazoPa", "GazoPa search", "http://www.gazopa.com/similar?key_url=", "image"],
 };

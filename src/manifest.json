@@ -2,7 +2,7 @@
   "name": "RevEye Reverse Image Search",
   "author": "Steven Van Vaerenbergh",
   "description": "Perform a search by image. Choose between the image search engines Google, Bing, Yandex, TinEye and Baidu.",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "manifest_version": 2,
   "background": {
     "page": "reveye.html"
