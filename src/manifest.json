@@ -2,7 +2,7 @@
   "name": "RevEye Reverse Image Search",
   "author": "Steven Van Vaerenbergh",
   "description": "Perform a search by image. Choose between the image search engines Google, Bing, Yandex, TinEye and Baidu.",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "manifest_version": 2,
   "background": {
     "page": "reveye.html"
@@ -11,11 +11,11 @@
   "icons": {
     "16": "i/reveye16.png",
     "19": "i/reveye19.png",
-	"48": "i/reveye48.png",
-	"128": "i/reveye128.png"
+    "48": "i/reveye48.png",
+    "128": "i/reveye128.png"
   },
   "permissions": [
-    "tabs", "contextMenus", "http://*/*", "https://*/*"
+    "contextMenus"
   ],
   "browser_action": {
     "default_name": "Reverse image search",
