@@ -15,7 +15,10 @@ Development version: [Download the source from GitHub](https://github.com/steven
 
 Changes
 -------
-- v1.4.8 (2020-11-24): Fix Yandex search url.
+- v1.4.8 (2020-11-24): Fixed Yandex search.
+- v1.4.7 (2019-06-14): Removed unnecessary permissions.
+- v1.4.6 (2019-06-14): Fixed Yandex search.
+- v1.4.5 (2017-07-23): Fixed Baidu search.
 - v1.4.4 (2015-05-20): Re-included Yandex and Baidu search.
 - v1.4.3 (2015-05-19): Included Bing image match.
 - v1.4 (20130628): Performed security changes and updated manifest to v2. Removed Yandex, Baidu, Cydral.  
