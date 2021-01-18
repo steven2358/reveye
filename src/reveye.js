@@ -3,94 +3,101 @@ var services = {
   "google": ["Google", "Google search", "https://www.google.com/searchbyimage?image_url=", "image"],
   "bing": ["Bing", "Bing image match", "https://www.bing.com/images/searchbyimage?cbir=ssbi&pageurl=http%3A%2F%2Fwww.squobble.com&imgurl=", "image"],
   "yandex": ["Yandex", "Yandex search", "https://yandex.com/images/search?rpt=imageview&url=", "image"],
-  "baidu": ["Baidu", "Baidu search", "http://image.baidu.com/n/pc_search?queryImageUrl=","image"],
+  //"baidu": ["Baidu", "Baidu search", "http://image.baidu.com/n/pc_search?queryImageUrl=","image"],
   "tineye": ["TinEye", "TinEye search", "https://www.tineye.com/search/?url=", "image","page"],
-//  "cydral": ["Cydral", "Cydral search", "http://www.cydral.com/#url=", "image"],
-//  "gazopa": ["GazoPa", "GazoPa search", "http://www.gazopa.com/similar?key_url=", "image"],
 };
-	
-function contextClick(info, tab){
-	var query = info.pageUrl;
-	if(info.mediaType=="image"){
-		var query = info.srcUrl;
-	}
-	imageSearch(menus[info.menuItemId], query);
-}
 
-function open_url(url) {
-	chrome.tabs.create({url: url, selected: false});
+function contextClick(info, tab){
+  console.log('contextClick')
+  
+  var query = info.pageUrl;
+  if(info.mediaType=="image"){
+    var query = info.srcUrl;
+  }
+  imageSearch(menus[info.menuItemId], query);
 }
 
 function imageSearch(service, query){
-	if (service=="all"){
-		for(var s in services){
-			if (s!="all"){
-				openService(s,query);
-			}
-		}
-	} else {
-		openService(service,query);
-	}
+  var myServices = localStorage.services.split(',');
+  
+  if (service=="all"){
+    for (var i = 0; i < myServices.length; i++) {
+      openService(myServices[i],query);
+    }
+  } else {
+    openService(service,query);
+  }
 }
 
+// Open a new tab with a query on a service
 function openService(service,query){
-	var baseUrl = services[service][2];
-	open_url(baseUrl + encodeURIComponent(query));
+  // create url for search query
+  var url = services[service][2] + encodeURIComponent(query);
+
+  // open new tab with search query
+  chrome.tabs.create({url: url, selected: false});
 }
 
 function create_submenu() {
-	var rootmenu = chrome.contextMenus.create({
-	  "title" : "Reverse image search",
-	  "type" : "normal",
-	  "contexts" : ["image","page"]
-	});
-		
-	for(var s in services){
-		var mymenu = chrome.contextMenus.create({
-	    title: services[s][1],
-	    type: "normal",
-	    contexts: services[s].slice(3),
-	    parentId: rootmenu,
-	    onclick: contextClick
-	  })	  
-	  menus[mymenu] = s;
-	}
+  // create main menu item
+  var rootmenu = chrome.contextMenus.create({
+    "title" : "Reverse image search",
+    "type" : "normal",
+    "contexts" : ["image","page"]
+  });
+  
+  var myServices = localStorage.services.split(',');
+  
+  // add option to open queries on all selected services at once
+  myServices.unshift('all');
+  
+  // create submenu items
+  for (var i = 0; i < myServices.length; i++) {
+    var mymenu = chrome.contextMenus.create({
+      title: services[myServices[i]][1],
+      type: "normal",
+      contexts: services[myServices[i]].slice(3),
+      parentId: rootmenu,
+      onclick: contextClick
+    })
+    menus[mymenu] = myServices[i];
+  }
 }
 
+// Create a single search option
 function create_singleoption() {
-	service = services[localStorage.service];
-	var imageMenu = chrome.contextMenus.create({
-		"title" : "Reverse image search ("+service[0]+")",
-		"type" : "normal",
-	  "contexts" : service.slice(3),
-	  "onclick" : contextClick
-	});
-	menus[imageMenu] = localStorage.service;
+  var myServices = localStorage.services.split(',');
+  var service = services[myServices[0]];
+  var imageMenu = chrome.contextMenus.create({
+    "title" : "Reverse image search ("+service[0]+")",
+    "type" : "normal",
+    "contexts" : service.slice(3),
+    "onclick" : contextClick
+  });
+  menus[imageMenu] = myServices[0];
 }
 
 function updateContextMenu() {
-	chrome.contextMenus.removeAll();
-	switch(localStorage.menutype) {
-		case "submenu":
-			create_submenu();
-			break;
-		case "singleoption":
-			create_singleoption();
-			break;
-		default:
-			create_submenu();
-	}
+  chrome.contextMenus.removeAll();
+  
+  var myServices = localStorage.services.split(',');
+  if (myServices.length > 1) {
+    create_submenu();
+  } else {
+    create_singleoption();
+  }
 }
 
-menus = {};
+// variable to store IDs of menu items (as values)
+var menus = {};
 
 updateContextMenu();
 
 chrome.extension.onRequest.addListener(
   function(request) {
-	switch(request.action){
-		case "updateContextMenu" : 
-			updateContextMenu();
-			break;
-	}
+  switch(request.action){
+    case "updateContextMenu" : 
+      updateContextMenu();
+      break;
+  }
 });

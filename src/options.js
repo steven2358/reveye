@@ -1,48 +1,77 @@
+// define all possible services
+const allServices = ['google', 'bing', 'yandex', 'tineye'];
+
 function save_options() {
-	var menutype_radio = document.getElementsByName("menutype");
-	for(var i = 0; i < menutype_radio.length; i++) {if(menutype_radio[i].checked){localStorage.menutype = menutype_radio[i].value;}}
-	
-	var service_dropdown = document.getElementById("service");
-	var selIndex = service_dropdown.selectedIndex;
-	localStorage.service = service_dropdown[selIndex].value;
+  // init as empty options
+  var services = [];
+  
+  // retrieve all checked services
+  for (var i = 0; i < allServices.length; i++) {
+    if (document.getElementById(allServices[i]).checked) {
+      services.push(allServices[i]);
+    }
+  }
+  
+  // store or complain
+  if (services.length > 0) {
+    localStorage.services = services;
 
-	chrome.extension.sendRequest({action:"updateContextMenu"});
-	
-	var status = document.getElementById("status");
-	status.innerHTML = "Options saved.";
-	setTimeout(function() { status.innerHTML = ""; }, 800);
+    var status = document.getElementById("status");
+    status.innerHTML = "Options saved.";
+    setTimeout(function() { status.innerHTML = ""; }, 800);
+    
+    chrome.extension.sendRequest({action:"updateContextMenu"});
+    
+  } else {
+    alert('Select at least one service.');
+  }
 }
 
+// activate the checkboxes for the active services
 function restore_options() {
-	if (!localStorage.menutype){localStorage.menutype = "submenu";}
-	var menutype = localStorage.menutype;
-	document.getElementById(menutype).checked = true;
-	
-	document.getElementById("submenu_default").style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
-
-	if (!localStorage.service){localStorage.service = "all";}
-	var service = localStorage.service;
-	document.getElementById(service).selected = true;
+  var myServices = localStorage.services.split(',');
+  
+  for (var i = 0; i < allServices.length; i++) {
+    if (myServices.includes(allServices[i])) {
+      document.getElementById(allServices[i]).checked = true;
+    } else {
+      document.getElementById(allServices[i]).checked = false;
+    }
+  }
 }
 
-function toggle_default_visibility() {
-	document.getElementById('submenu_default').style.display = (document.getElementsByName("menutype")[1].checked ? '' : 'none' );
+// upgrade from pre v1.5: Remove old stored variables, save new ones with all options
+function upgrade_options() {
+  if (localStorage.menutype){
+    // remove old variable
+    localStorage.removeItem("menutype");
+    
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
+  if (localStorage.service){
+    // remove old variable
+    localStorage.removeItem("service");
+    
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
 }
 
 function close_window() {
-	window.close();
+  window.close();
 }
 
+// run on loading options or popup window
 function initialize() {
-	restore_options();
-	document.getElementById("submenu").addEventListener("click",toggle_default_visibility);
-	document.getElementById("singleoption").addEventListener("click",toggle_default_visibility);
-	document.getElementById("save_button").addEventListener("click",save_options);
-	
-	if (document.getElementById("close_button")){
-		document.getElementById("close_button").addEventListener("click",close_window);
-	}
+  upgrade_options();
+  restore_options();
+  
+  document.getElementById("save_button").addEventListener("click",save_options);
+  
+  if (document.getElementById("close_button")){
+    document.getElementById("close_button").addEventListener("click",close_window);
+  }
 }
 
 window.addEventListener("load", initialize);
-

@@ -1,11 +1,11 @@
 <html>
 <head>
-<title>RevEye - Reverse Image Lookup - options</title>
+<title>RevEye - Reverse Image Lookup - Options</title>
 
 <style type="text/css">
 body {
 	margin: 15px auto;
-	width: 450px;
+	width: 250px;
 	font-family: arial, sans-serif;
 	font-size: 14px;
 	text-align: center
@@ -24,7 +24,7 @@ p {
 }
 #status {
 	background-color: yellow;
-	margin: 5px 150px;
+	margin: 5px 10px;
 }
 .options {
 	text-align: left;
@@ -46,27 +46,20 @@ p {
 <p id="slogan">Reverse Image Lookup</p>
 </div>
 
-<h3>Context menu options:</h3>
+<h3>Select search engines in context menu:</h3>
 <div class="options">
-<input type="radio" id="submenu" name="menutype" value="submenu" id="submenu"><label for="submenu" title="Choose this option if you want to select a search engine on every lookup.">Display all search engines in the menu.</label><br/>
-<input type="radio" id="singleoption" name="menutype" value="singleoption" id="singleoption"><label for="singleoption" title="Choose this option if you want to use the same search engine for every lookup.">Use one default option:</label> <span id="submenu_default" name="submenu_default"><select id="service">
-<option id="all" value="all">all engines</option>
-<option id="google" value="google">Google</option>
-<option id="bing" value="bing">Bing</option>
-<option id="yandex" value="yandex">Yandex</option>
-<option id="tineye" value="tineye">TinEye</option>
-<option id="baidu" value="baidu">Baidu</option>
-</select>
-</span>
+<input type="checkbox" id="google" name="google"><label for="google">Google</label></input><br/>
+<input type="checkbox" id="bing" name="bing"><label for="bing">Bing</label></input><br/>
+<input type="checkbox" id="yandex" name="yandex"><label for="yandex">Yandex</label></input><br/>
+<input type="checkbox" id="tineye" name="tineye"><label for="tineye">TinEye</label></input><br/>
 </div>
-
 
 <div id="save">
 <div id="status"></div>
 <button id="save_button">Save</button>
 </div>
 
-<p id="footer">RevEye v1.4.8 Copyright &copy; 2010-2020 <a href="http://squobble.blogspot.com" target="_blank">steven2358</a>.</p>
+<p id="footer">RevEye v1.5.0 Copyright &copy; 2010-2021 <a href="https://github.com/steven2358" target="_blank">steven2358</a>.</p>
 
 </body>
 </html>

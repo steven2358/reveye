@@ -40,17 +40,13 @@ body {
 <h2>RevEye Options</h2>
 
 <body>
-<p>Select context menu:</p>
-<p id="options">
-<input type="radio" name="menutype" value="submenu" id="submenu"><label for="submenu" title="Choose this option if you want to select a search engine on every lookup.">Submenu with all options.</label><br/>
-<input type="radio" name="menutype" value="singleoption" id="singleoption"><label for="singleoption" title="Choose this option if you want to use the same configuration for every lookup.">One default search option:</label><div id="submenu_default"><select id="service">
-<option id="all" value="all">all engines</option>
-<option id="google" value="google">Google</option>
-<option id="bing" value="bing">Bing</option>
-<option id="yandex" value="yandex">Yandex</option>
-<option id="tineye" value="tineye">TinEye</option>
-<option id="baidu" value="baidu">Baidu</option>
-</select>
+
+<p>Select search engines in context menu:</p>
+<div class="options">
+<input type="checkbox" id="google" name="google"><label for="google">Google</label></input><br/>
+<input type="checkbox" id="bing" name="bing"><label for="bing">Bing</label></input><br/>
+<input type="checkbox" id="yandex" name="yandex"><label for="yandex">Yandex</label></input><br/>
+<input type="checkbox" id="tineye" name="tineye"><label for="tineye">TinEye</label></input><br/>
 </div>
 
 
