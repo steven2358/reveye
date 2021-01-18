@@ -15,6 +15,7 @@ Development version: [Download the source from GitHub](https://github.com/steven
 
 Changes
 -------
+- v1.5.0 (2021-01-18): Add checkboxes to enable/disable individual search engines. Removed Baidu (for now).
 - v1.4.8 (2020-11-24): Fixed Yandex search.
 - v1.4.7 (2019-06-14): Removed unnecessary permissions.
 - v1.4.6 (2019-06-14): Fixed Yandex search.
@@ -32,7 +33,7 @@ Changes
 
 Author
 ------
-Copyright (c) 2011-2020 Steven Van Vaerenbergh
+Copyright (c) 2010-2021 Steven Van Vaerenbergh
 
 
 License
