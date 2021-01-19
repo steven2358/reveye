@@ -1,7 +1,7 @@
 // define all possible services
 const allServices = ['google', 'bing', 'yandex', 'tineye'];
 
-function save_options() {
+function saveOptions() {
   // init as empty options
   var services = [];
   
@@ -28,7 +28,7 @@ function save_options() {
 }
 
 // activate the checkboxes for the active services
-function restore_options() {
+function activateCheckboxes() {
   var myServices = localStorage.services.split(',');
   
   for (var i = 0; i < allServices.length; i++) {
@@ -40,8 +40,9 @@ function restore_options() {
   }
 }
 
-// upgrade from pre v1.5: Remove old stored variables, save new ones with all options
-function upgrade_options() {
+// upgrade from pre v1.5: remove old stored variables, save new 
+// ones with all options
+function upgradeOptions() {
   if (localStorage.menutype){
     // remove old variable
     localStorage.removeItem("menutype");
@@ -58,19 +59,29 @@ function upgrade_options() {
   }
 }
 
-function close_window() {
+// set the options for a clean install
+function initializeOptions() {
+  // if clean install
+  if (localStorage.getItem("services") === null) {
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
+}
+
+function closeWindow() {
   window.close();
 }
 
 // run on loading options or popup window
 function initialize() {
-  upgrade_options();
-  restore_options();
+  initializeOptions();
+  upgradeOptions();
+  activateCheckboxes();
   
-  document.getElementById("save_button").addEventListener("click",save_options);
+  document.getElementById("save_button").addEventListener("click",saveOptions);
   
   if (document.getElementById("close_button")){
-    document.getElementById("close_button").addEventListener("click",close_window);
+    document.getElementById("close_button").addEventListener("click",closeWindow);
   }
 }
 

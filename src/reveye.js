@@ -1,3 +1,6 @@
+// define all possible services
+const allServices = ['google', 'bing', 'yandex', 'tineye'];
+
 var services = {
   "all": ["all", "All search engines", "", "image"],
   "google": ["Google", "Google search", "https://www.google.com/searchbyimage?image_url=", "image"],
@@ -77,6 +80,33 @@ function create_singleoption() {
   menus[imageMenu] = myServices[0];
 }
 
+// upgrade from pre v1.5
+function upgradeOptions() {
+  // remove old stored variables, save new ones with all options
+  if (localStorage.menutype){
+    localStorage.removeItem("menutype");
+    
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
+  if (localStorage.service){
+    // remove old variable
+    localStorage.removeItem("service");
+    
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
+}
+
+// set the options for a clean install
+function initializeOptions() {
+  // if clean install
+  if (localStorage.getItem("services") === null) {
+    // save "services" variable with all options
+    localStorage.services = allServices;
+  }
+}
+
 function updateContextMenu() {
   chrome.contextMenus.removeAll();
   
@@ -91,6 +121,8 @@ function updateContextMenu() {
 // variable to store IDs of menu items (as values)
 var menus = {};
 
+initializeOptions();
+upgradeOptions();
 updateContextMenu();
 
 chrome.extension.onRequest.addListener(
