@@ -15,6 +15,7 @@ Development version: [Download the source from GitHub](https://github.com/steven
 
 Changes
 -------
+- v1.5.1 (2021-01-19): Fixed a bug in upgrade/initialization script.
 - v1.5.0 (2021-01-18): Add checkboxes to enable/disable individual search engines. Removed Baidu (for now).
 - v1.4.8 (2020-11-24): Fixed Yandex search.
 - v1.4.7 (2019-06-14): Removed unnecessary permissions.
