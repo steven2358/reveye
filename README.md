@@ -1,20 +1,22 @@
-RevEye: Reverse image search extension for Google Chrome
-========================================================
+# RevEye: Reverse image search extension for Google Chrome
+
+[![GitHub license](https://img.shields.io/github/license/steven2358/reveye)](https://github.com/steven2358/reveye/blob/master/LICENSE.txt)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/steven2358/reveye)
 
 This extension allows to perform an inverse image search by right-clicking onto any image in a web site.
 
 The context menu can be configured to contain either a single button with the default search engine, or a cascaded menu with all included search engines.
 
 
-Install
--------
+## Install
+
 Stable version: Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/keaaclcjhehbbapnphnmpiklalfhelgf) and click "Add to Chrome".
 
 Development version: [Download the source from GitHub](https://github.com/steven2358/reveye/archive/master.zip) and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked).
 
 
-Changes
--------
+## Changes
+
 - v1.5.1 (2021-01-19): Fixed a bug in upgrade/initialization script.
 - v1.5.0 (2021-01-18): Add checkboxes to enable/disable individual search engines. Removed Baidu (for now).
 - v1.4.8 (2020-11-24): Fixed Yandex search.
@@ -32,11 +34,11 @@ Changes
 - v0.1 (20091213): Initial version. Performs reverse image search of all images on a page using TinEye.  
 
 
-Author
-------
-Copyright (c) 2010-2021 Steven Van Vaerenbergh
+## Author
+
+Copyright (c) 2010-2022 Steven Van Vaerenbergh
 
 
-License
--------
+## License
+
 Released under the GPLv3 license. For full details see the LICENSE.txt file included in this distribution.
