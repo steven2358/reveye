@@ -12,7 +12,7 @@ The context menu can be configured to contain either a single button with the de
 
 Stable version: Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/keaaclcjhehbbapnphnmpiklalfhelgf) and click "Add to Chrome".
 
-Development version: [Download the source from GitHub](https://github.com/steven2358/reveye/archive/master.zip) and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked).
+Development version: [Download the source from GitHub](https://github.com/steven2358/reveye/archive/master.zip) and [load the extension into Chrome](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).
 
 
 ## Changes
@@ -32,6 +32,13 @@ Development version: [Download the source from GitHub](https://github.com/steven
 - v1.0 (20100302): Added context menu.  
 - v0.2 (20091214): Included new logo.  
 - v0.1 (20091213): Initial version. Performs reverse image search of all images on a page using TinEye.  
+
+
+## Philosophy
+
+RevEye is free and open source software. To minimize its memory footprint in your browser, it is written in pure vanilla JavaScript and it does not use any of the fancy JavaScript frameworks.
+
+RevEye does not track any of your data, and it does not include ads. If you want to support RevEye development you can make a donation through [PayPal](https://www.paypal.com/donate/?business=ZUV4WDZHM6N6S&no_recurring=0&currency_code=EUR), Bitcoin (12358FQL4NuQGrU3vFcUBDBk988iQEUBd3) or [Brave tips](https://brave.com/tips/).
 
 
 ## Author
