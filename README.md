@@ -25,13 +25,13 @@ Development version: [Download the source from GitHub](https://github.com/steven
 - v1.4.5 (2017-07-23): Fixed Baidu search.
 - v1.4.4 (2015-05-20): Re-included Yandex and Baidu search.
 - v1.4.3 (2015-05-19): Included Bing image match.
-- v1.4 (20130628): Performed security changes and updated manifest to v2. Removed Yandex, Baidu, Cydral.  
-- v1.3 (20110617): Included Google (brand new and kicking), Yandex and Baidu image search engines. Removed GazoPa as they discontinued their B2C service.  
-- v1.2 (20110530): Name change to comply with Google's branding policies. Added Cydral search engine. Added option to choose between default engine or cascaded submenu.  
-- v1.1 (20110301): Added option to select between TinEye and GazoPa search engines.  
-- v1.0 (20100302): Added context menu.  
-- v0.2 (20091214): Included new logo.  
-- v0.1 (20091213): Initial version. Performs reverse image search of all images on a page using TinEye.  
+- v1.4 (2013-06-28): Performed security changes and updated manifest to v2. Removed Yandex, Baidu, Cydral.  
+- v1.3 (2011-06-17): Included Google (brand new and kicking), Yandex and Baidu image search engines. Removed GazoPa as they discontinued their B2C service.  
+- v1.2 (2011-05-30): Name change to comply with Google's branding policies. Added Cydral search engine. Added option to choose between default engine or cascaded submenu.  
+- v1.1 (2011-03-01): Added option to select between TinEye and GazoPa search engines.  
+- v1.0 (2010-03-02): Added context menu.  
+- v0.2 (2009-12-14): Included new logo.  
+- v0.1 (2009-12-13): Initial version. Performs reverse image search of all images on a page using TinEye.  
 
 
 ## Philosophy

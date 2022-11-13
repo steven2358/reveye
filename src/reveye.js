@@ -3,7 +3,7 @@ const allServices = ['google', 'bing', 'yandex', 'tineye'];
 
 var services = {
   "all": ["all", "All search engines", "", "image"],
-  "google": ["Google", "Google search", "https://www.google.com/searchbyimage?image_url=", "image"],
+  "google": ["Google", "Google search", "https://lens.google.com/uploadbyurl?url=", "image"],
   "bing": ["Bing", "Bing image match", "https://www.bing.com/images/searchbyimage?cbir=ssbi&pageurl=http%3A%2F%2Fwww.squobble.com&imgurl=", "image"],
   "yandex": ["Yandex", "Yandex search", "https://yandex.com/images/search?rpt=imageview&url=", "image"],
   //"baidu": ["Baidu", "Baidu search", "http://image.baidu.com/n/pc_search?queryImageUrl=","image"],
