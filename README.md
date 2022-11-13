@@ -17,6 +17,7 @@ Development version: [Download the source from GitHub](https://github.com/steven
 
 ## Changes
 
+- v1.5.2 (2022-11-13): Replaced Google Image Search by Google Lens.
 - v1.5.1 (2021-01-19): Fixed a bug in upgrade/initialization script.
 - v1.5.0 (2021-01-18): Add checkboxes to enable/disable individual search engines. Removed Baidu (for now).
 - v1.4.8 (2020-11-24): Fixed Yandex search.
