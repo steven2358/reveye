@@ -1,7 +1,11 @@
+<p align="center"><img src="src/i/reveye128.png"></p>
+
 # RevEye: Reverse image search extension for Google Chrome
 
-[![GitHub license](https://img.shields.io/github/license/steven2358/reveye)](https://github.com/steven2358/reveye/blob/master/LICENSE.txt)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/steven2358/reveye)
+[![GitHub license](https://img.shields.io/github/license/steven2358/reveye?color=blue)](https://github.com/steven2358/reveye/blob/master/LICENSE.txt)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/steven2358/reveye?color=ff69b4)](https://github.com/steven2358/reveye)
+[![Chrome web store rating](https://img.shields.io/chrome-web-store/rating/keaaclcjhehbbapnphnmpiklalfhelgf)](https://chrome.google.com/webstore/detail/reveye-reverse-image-sear/keaaclcjhehbbapnphnmpiklalfhelgf)
+[![Chrome web store users](https://img.shields.io/chrome-web-store/users/keaaclcjhehbbapnphnmpiklalfhelgf?color=yellow)](https://chrome.google.com/webstore/detail/reveye-reverse-image-sear/keaaclcjhehbbapnphnmpiklalfhelgf)
 
 This extension allows to perform an inverse image search by right-clicking onto any image in a web site.
 
