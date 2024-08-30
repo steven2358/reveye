@@ -1,88 +1,127 @@
-// define all possible services
-const allServices = ['google', 'bing', 'yandex', 'tineye'];
+let searchEngines = {
+  google: {
+    name: 'Google',
+    url: 'https://lens.google.com/uploadbyurl?url=%s'
+  },
+  bing: {
+    name: 'Bing',
+    url: 'https://www.bing.com/images/searchbyimage?cbir=ssbi&imgurl=%s'
+  },
+  yandex: {
+    name: 'Yandex',
+    url: 'https://yandex.com/images/search?rpt=imageview&url=%s'
+  },
+  tineye: {
+    name: 'TinEye',
+    url: 'https://www.tineye.com/search/?url=%s'
+  }
+};
+
+const defaultOrder = ['google', 'bing', 'yandex', 'tineye'];
 
 function saveOptions() {
-  // init as empty options
-  var services = [];
-  
-  // retrieve all checked services
-  for (var i = 0; i < allServices.length; i++) {
-    if (document.getElementById(allServices[i]).checked) {
-      services.push(allServices[i]);
+  const orderedEngineIds = defaultOrder.concat(
+    Object.keys(searchEngines).filter(id => !defaultOrder.includes(id))
+  );
+
+  const selectedEngines = orderedEngineIds.filter(engineId => 
+    document.getElementById(engineId) && document.getElementById(engineId).checked
+  );
+
+  const orderedSearchEngines = {};
+  orderedEngineIds.forEach(engineId => {
+    if (searchEngines[engineId]) {
+      orderedSearchEngines[engineId] = searchEngines[engineId];
     }
-  }
+  });
+
+  chrome.storage.local.set({
+    searchEngines: orderedSearchEngines,
+    selectedEngines: selectedEngines
+  }, function() {
+    const status = document.getElementById('status');
+    status.textContent = 'Options saved.';
+    setTimeout(function() {
+      status.textContent = '';
+    }, 750);
+    chrome.runtime.sendMessage({action: "updateContextMenu"});
+  });
+}
+
+function restoreOptions() {
+  chrome.storage.local.get({
+    searchEngines: searchEngines,
+    selectedEngines: ['google']
+  }, function(items) {
+    searchEngines = items.searchEngines;
+    const enginesDiv = document.getElementById('searchEngines');
+    enginesDiv.innerHTML = '';
+
+    defaultOrder.forEach(engineId => {
+      if (searchEngines[engineId]) {
+        const engine = searchEngines[engineId];
+        const engineElement = createEngineElement(engineId, engine, items.selectedEngines.includes(engineId));
+        enginesDiv.appendChild(engineElement);
+      }
+    });
+
+    Object.keys(searchEngines)
+      .filter(engineId => !defaultOrder.includes(engineId))
+      .forEach(engineId => {
+        const engine = searchEngines[engineId];
+        const engineElement = createEngineElement(engineId, engine, items.selectedEngines.includes(engineId));
+        enginesDiv.appendChild(engineElement);
+      });
+  });
+}
+
+function createEngineElement(engineId, engine, isChecked) {
+  const div = document.createElement('div');
+  div.className = 'search-engine';
+  const isCustom = !defaultOrder.includes(engineId);
   
-  // store or complain
-  if (services.length > 0) {
-    localStorage.services = services;
+  div.innerHTML = `
+    <input type="checkbox" id="${engineId}" ${isChecked ? 'checked' : ''}>
+    ${isCustom ? `
+      <input type="text" class="engine-name" value="${engine.name}" placeholder="Engine name">
+      <input type="text" class="engine-url" value="${engine.url}" placeholder="Search URL with %s for image URL">
+      <button class="remove-engine">Remove</button>
+    ` : `
+      <label for="${engineId}">${engine.name}</label>
+    `}
+  `;
 
-    var status = document.getElementById("status");
-    status.innerHTML = "Options saved.";
-    setTimeout(function() { status.innerHTML = ""; }, 800);
-    
-    chrome.extension.sendRequest({action:"updateContextMenu"});
-    
-  } else {
-    alert('Select at least one service.');
+  if (isCustom) {
+    const removeButton = div.querySelector('.remove-engine');
+    removeButton.addEventListener('click', () => {
+      delete searchEngines[engineId];
+      div.remove();
+      saveOptions();
+    });
+
+    const nameInput = div.querySelector('.engine-name');
+    const urlInput = div.querySelector('.engine-url');
+    [nameInput, urlInput].forEach(input => {
+      input.addEventListener('change', () => {
+        searchEngines[engineId] = {
+          name: nameInput.value,
+          url: urlInput.value
+        };
+      });
+    });
   }
+
+  return div;
 }
 
-// activate the checkboxes for the active services
-function activateCheckboxes() {
-  var myServices = localStorage.services.split(',');
-  
-  for (var i = 0; i < allServices.length; i++) {
-    if (myServices.includes(allServices[i])) {
-      document.getElementById(allServices[i]).checked = true;
-    } else {
-      document.getElementById(allServices[i]).checked = false;
-    }
-  }
+function addCustomEngine() {
+  const enginesDiv = document.getElementById('searchEngines');
+  const newId = 'custom_' + Date.now();
+  searchEngines[newId] = { name: '', url: '' };
+  const newEngine = createEngineElement(newId, searchEngines[newId], true);
+  enginesDiv.appendChild(newEngine);
 }
 
-// upgrade from pre v1.5: remove old stored variables, save new 
-// ones with all options
-function upgradeOptions() {
-  if (localStorage.menutype){
-    // remove old variable
-    localStorage.removeItem("menutype");
-    
-    // save "services" variable with all options
-    localStorage.services = allServices;
-  }
-  if (localStorage.service){
-    // remove old variable
-    localStorage.removeItem("service");
-    
-    // save "services" variable with all options
-    localStorage.services = allServices;
-  }
-}
-
-// set the options for a clean install
-function initializeOptions() {
-  // if clean install
-  if (localStorage.getItem("services") === null) {
-    // save "services" variable with all options
-    localStorage.services = allServices;
-  }
-}
-
-function closeWindow() {
-  window.close();
-}
-
-// run on loading options or popup window
-function initialize() {
-  initializeOptions();
-  upgradeOptions();
-  activateCheckboxes();
-  
-  document.getElementById("save_button").addEventListener("click",saveOptions);
-  
-  if (document.getElementById("close_button")){
-    document.getElementById("close_button").addEventListener("click",closeWindow);
-  }
-}
-
-window.addEventListener("load", initialize);
+document.addEventListener('DOMContentLoaded', restoreOptions);
+document.getElementById('save').addEventListener('click', saveOptions);
+document.getElementById('addCustomEngine').addEventListener('click', addCustomEngine);

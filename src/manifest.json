@@ -1,26 +1,38 @@
 {
+  "manifest_version": 3,
   "name": "RevEye Reverse Image Search",
+  "version": "2.0.0",
   "author": "Steven Van Vaerenbergh",
-  "description": "Perform a search by image. Choose between the image search engines Google, Bing, Yandex, and TinEye.",
-  "version": "1.5.2",
-  "manifest_version": 2,
+  "description": "Perform a search by image. Choose between the image search engines Google, Bing, Yandex, TinEye, or user-defined engines.",
+  "permissions": [
+    "contextMenus",
+    "storage"
+  ],
   "background": {
-    "page": "reveye.html"
+    "service_worker": "background.js"
   },
   "options_page": "options.html",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "i/icon16.png",
+      "19": "i/icon19.png",
+      "32": "i/icon32.png",
+      "48": "i/icon48.png",
+      "128": "i/icon128.png"
+    }
+  },
   "icons": {
-    "16": "i/reveye16.png",
-    "19": "i/reveye19.png",
-    "48": "i/reveye48.png",
-    "128": "i/reveye128.png"
+    "16": "i/icon16.png",
+    "19": "i/icon19.png",
+    "32": "i/icon32.png",
+    "48": "i/icon48.png",
+    "128": "i/icon128.png"
   },
-  "permissions": [
-    "contextMenus"
-  ],
-  "browser_action": {
-    "default_name": "Reverse image search",
-    "default_icon": "i/reveye48.png",
-    "default_popup": "popup.html"
-  },
-  "update_url":"http://clients2.google.com/service/update2/crx"
+  "web_accessible_resources": [
+    {
+      "resources": ["whatsnew.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

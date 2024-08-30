@@ -1,62 +1,19 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>RevEye reverse image search popup</title>
-
-<style type="text/css">
-body {
-	padding: 5px 0px;
-	width: 170px;
-	font-family: arial, sans-serif;
-	font-size: 12px;
-}
-#logo {
-	float: right;
-	padding: 0 0 5px 5px;
-}
-#save {
-	text-align: center;
-}
-#status {
-	background-color: yellow;
-	margin: 5px 0px;
-}
-#options {
-	text-align: left;
-	padding-left: 5px;
-}
-#submenu_default {
-	text-align: center;
-}
-#instructions {
-	font-size: 12px;
-}
-</style>
-
-<script src="options.js"></script>
+  <title>RevEye Reverse Image Search</title>
+  <style>
+    body { width: 170px; padding: 10px; text-align: center; font-size: 12px; }
+    h1, p { margin: 5px 0; }
+    a, img { display: block; margin: 15px auto; }
+  </style>
 </head>
-
-
-<img id="logo" src="i/reveye48.png">
-<h2>RevEye Options</h2>
-
 <body>
-
-<p>Select search engines in context menu:</p>
-<div class="options">
-<input type="checkbox" id="google" name="google"><label for="google">Google</label></input><br/>
-<input type="checkbox" id="bing" name="bing"><label for="bing">Bing</label></input><br/>
-<input type="checkbox" id="yandex" name="yandex"><label for="yandex">Yandex</label></input><br/>
-<input type="checkbox" id="tineye" name="tineye"><label for="tineye">TinEye</label></input><br/>
-</div>
-
-
-
-<div id="save">
-<div id="status"></div>
-<button id="save_button">Save</button> <a id="close_button" href="#">cancel</a>
-</div>
-
-<p id="instructions"><b>RevEye Instructions:</b><br/> Use context menu (right click) on any image in a web page.</p>
-
+  <h1>RevEye</h1>
+  <p>Reverse Image Search</p>
+  <img src="i/icon48.png">
+  <a href="#" id="optionsLink">Options</a>
+  <p id="instructions"><b>RevEye Instructions:</b><br/>Use context menu (right click) on any image in a web page.</p>
+  <script src="popup.js"></script>
 </body>
 </html>

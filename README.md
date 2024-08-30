@@ -9,8 +9,7 @@
 
 This extension allows to perform an inverse image search by right-clicking onto any image in a web site.
 
-The context menu can be configured to contain either a single button with the default search engine, or a cascaded menu with all included search engines.
-
+The context menu can be configured to contain either a single button with the default search engine, or a cascaded menu with all included search engines. Custom search engines can be added by the user (see below).
 
 ## Install
 
@@ -18,9 +17,17 @@ Stable version: Go to the [Google Chrome Web Store](https://chrome.google.com/we
 
 Development version: [Download the source from GitHub](https://github.com/steven2358/reveye/archive/master.zip) and [load the extension into Chrome](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).
 
+## Adding user-defined search engines
 
-## Changes
+To add a custom search engine, open the extension options page and click on the "Add custom engine" button. Fill in the name and URL of the search engine (use `%s` as a placeholder for the image URL). For example, to add SauceNAO, fill in the following values:
+- Name: `SauceNAO`
+- URL: `https://saucenao.com/search.php?url=%s`
 
+ Make sure the check box is checked and click "Save". The search engine will be added to the context menu.
+
+## Changelog
+
+- v2.0.0 (2024-08-30): Updated to manifest v3. Added option to add custom search engines. Refactored code.
 - v1.5.2 (2022-11-13): Replaced Google Image Search by Google Lens.
 - v1.5.1 (2021-01-19): Fixed a bug in upgrade/initialization script.
 - v1.5.0 (2021-01-18): Add checkboxes to enable/disable individual search engines. Removed Baidu (for now).
@@ -48,7 +55,7 @@ RevEye does not track any of your data, and it does not include ads. If you want
 
 ## Author
 
-Copyright (c) 2010-2022 Steven Van Vaerenbergh
+Copyright (c) 2010-2024 Steven Van Vaerenbergh
 
 
 ## License

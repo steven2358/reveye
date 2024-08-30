@@ -1,65 +1,34 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>RevEye - Reverse Image Lookup - Options</title>
-
-<style type="text/css">
-body {
-	margin: 15px auto;
-	width: 250px;
-	font-family: arial, sans-serif;
-	font-size: 14px;
-	text-align: center
-}
-h1 {
-	margin: 0;
-}
-h3 {
-	margin: 20px 0 5px 0;
-}
-p {
-	margin: 0 0 10px 0;
-}
-#save {
-	margin-top: 10px;
-}
-#status {
-	background-color: yellow;
-	margin: 5px 10px;
-}
-.options {
-	text-align: left;
-	padding-left: 80px;
-}
-#footer {
-	font-size: 80%;
-	margin-top: 50px;
-}
-</style>
-
-<script src="options.js"></script>
+  <title>RevEye Reverse Image Search - Options</title>
+  <style>
+    body { width: 500px; margin: 15px auto; padding: 20px; font-family: Arial, sans-serif; font-size: 14px; }
+    .search-engine { margin-bottom: 10px; display: flex; align-items: center; }
+    .search-engine input[type="text"] { margin-right: 5px; }
+    .search-engine input[type="text"].engine-name { width: 100px; }
+    .search-engine input[type="text"].engine-url { width: 250px; }
+    button { margin-top: 10px; }
+    .remove-engine {margin-top: -1px; }
+    #status {	background-color: yellow; margin: 10px 0; width: 150px; }
+    #footer { font-size: 80%; margin-top: 30px; }
+  </style>
 </head>
-
 <body>
-<div id="header">
-<img src="i/reveye128.png">
-<h1>RevEye</h1>
-<p id="slogan">Reverse Image Lookup</p>
-</div>
+  <div id="header">
+    <img src="i/icon128.png">
+    <h1>RevEye options</h1>
+    </div>
 
-<h3>Select search engines in context menu:</h3>
-<div class="options">
-<input type="checkbox" id="google" name="google"><label for="google">Google</label></input><br/>
-<input type="checkbox" id="bing" name="bing"><label for="bing">Bing</label></input><br/>
-<input type="checkbox" id="yandex" name="yandex"><label for="yandex">Yandex</label></input><br/>
-<input type="checkbox" id="tineye" name="tineye"><label for="tineye">TinEye</label></input><br/>
-</div>
+  <h3>Select search engines in context menu:</h3>
 
-<div id="save">
-<div id="status"></div>
-<button id="save_button">Save</button>
-</div>
+  <div id="searchEngines"></div>
+  <button id="addCustomEngine">Add custom engine</button>
+  <button id="save">Save</button>
+  <p id="status"></p>
 
-<p id="footer">RevEye v1.5.2 Copyright &copy; 2010-2022 <a href="https://github.com/steven2358" target="_blank">steven2358</a>.</p>
+  <p id="footer">RevEye v2.0.0. Copyright &copy; 2010-2024 <a href="https://github.com/steven2358" target="_blank">steven2358</a>. <a href="https://github.com/steven2358/reveye" target="_blank">Source code.</a></p>
 
+  <script src="options.js"></script>
 </body>
 </html>
