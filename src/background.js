@@ -33,7 +33,7 @@ function initializeStorage() {
   chrome.storage.local.set({
     version: CURRENT_VERSION,
     searchEngines: defaultSearchEngines,
-    selectedEngines: ['google']
+    selectedEngines: ['google', 'bing', 'yandex', 'tineye']
   }, updateContextMenu);
 }
 
