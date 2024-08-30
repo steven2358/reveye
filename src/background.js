@@ -113,15 +113,24 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   chrome.storage.local.get(['searchEngines', 'selectedEngines'], function(items) {
     const { searchEngines, selectedEngines } = items;
 
-    if (info.menuItemId === "allEngines" || (info.menuItemId === "reverseImageSearch" && selectedEngines.length === 1)) {
-      const enginesToSearch = info.menuItemId === "allEngines" ? selectedEngines : [selectedEngines[0]];
-      enginesToSearch.forEach(engineId => {
-        const searchUrl = searchEngines[engineId].url.replace('%s', encodeURIComponent(info.srcUrl));
-        chrome.tabs.create({ url: searchUrl });
-      });
-    } else if (selectedEngines.includes(info.menuItemId)) {
-      const searchUrl = searchEngines[info.menuItemId].url.replace('%s', encodeURIComponent(info.srcUrl));
-      chrome.tabs.create({ url: searchUrl });
+    // open search engine tab at specific tab index
+    function openSearchTab(engineId, index) {
+      const searchUrl = searchEngines[engineId].url.replace('%s', encodeURIComponent(info.srcUrl));
+      chrome.tabs.create({ url: searchUrl, index: index });
     }
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      // get index of current tab
+      const currentIndex = tabs[0].index;
+
+      if (info.menuItemId === "allEngines" || (info.menuItemId === "reverseImageSearch" && selectedEngines.length === 1)) {
+        const enginesToSearch = info.menuItemId === "allEngines" ? selectedEngines : [selectedEngines[0]];
+        enginesToSearch.forEach((engineId, i) => {
+          openSearchTab(engineId, currentIndex + i + 1);
+        });
+      } else if (selectedEngines.includes(info.menuItemId)) {
+        openSearchTab(info.menuItemId, currentIndex + 1);
+      }
+    });
   });
 });
