@@ -24,9 +24,27 @@ function saveOptions() {
     Object.keys(searchEngines).filter(id => !defaultOrder.includes(id))
   );
 
-  const selectedEngines = orderedEngineIds.filter(engineId => 
-    document.getElementById(engineId) && document.getElementById(engineId).checked
-  );
+  let isValid = true;
+  const selectedEngines = orderedEngineIds.filter(engineId => {
+    const checkbox = document.getElementById(engineId);
+    if (checkbox && checkbox.checked) {
+      const engine = searchEngines[engineId];
+      if (!engine.name.trim() || !engine.url.includes('%s')) {
+        isValid = false;
+        return false;
+      }
+      return true;
+    }
+    return false;
+  });
+
+  const status = document.getElementById('status');
+  
+  if (!isValid) {
+    status.textContent = 'Error: Custom search engines must have a name and a URL containing %s';
+    status.style.color = 'red';
+    return;
+  }
 
   const orderedSearchEngines = {};
   orderedEngineIds.forEach(engineId => {
@@ -39,10 +57,11 @@ function saveOptions() {
     searchEngines: orderedSearchEngines,
     selectedEngines: selectedEngines
   }, function() {
-    const status = document.getElementById('status');
     status.textContent = 'Options saved.';
+    status.style.color = 'green';
     setTimeout(function() {
       status.textContent = '';
+      status.style.color = ''; // Reset color
     }, 750);
     chrome.runtime.sendMessage({action: "updateContextMenu"});
   });
