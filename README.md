@@ -1,4 +1,4 @@
-<p align="center"><img src="src/i/logo128.png"></p>
+<p align="center"><img src="src/i/icon128.png"></p>
 
 # RevEye: Reverse image search extension for Google Chrome
 
